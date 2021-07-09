@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import contactsActions from '../../redux/contacts/contacts-actions';
+import PropTypes from 'prop-types';
 import styles from "./ContactList.module.css";
 import ContactListItem from "../ContactListItem/ContactListItem"
 
-const ContactList = ({ contacts, onDeleteContact }) => (
-    <ul className={styles.contactList}>
-        {contacts.map((contact) => (
-            <ContactListItem key={contact.id} contact={contact} onDeleteContact={onDeleteContact} />
+const ContactList = ({ contacts,onDeleteContact}) => (
+        <ul className={styles.contactList}>
+            {contacts.map((contact) => (
+                <ContactListItem key={contact.id} contact={contact} onDeleteContact={onDeleteContact} />
         ))}
-    </ul>
+        </ul>
 )
 
 ContactList.propTypes = {
@@ -21,16 +21,17 @@ ContactList.propTypes = {
     })).isRequired,
 }
 
-const getfilteredContacts = (allContacts, filter) => {
-    const normalizedFilter = filter.toLowerCase()
+const getfilteredContacts = (allcontacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
 
-    return allContacts.filter(contact =>
-        contact.name.toLowerCase().includes(normalizedFilter))
-}
+    return allcontacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalizedFilter));
+};
 
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-    contacts: getfilteredContacts(items, filter)
-});
+const mapStateToProps = state => ({
+      contacts: getfilteredContacts(state.contacts.items, state.contacts.filter),
+})
+
 
 const mapDispatchToProps = dispatch => (
     {

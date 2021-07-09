@@ -8,16 +8,16 @@ const saveContact = ({ name, number }) => ({
         name: name,
         number: number,
     },
-})
+});
 
 const deleteContact = contactId => ({
     type: actionTypes.DELETE_CONTACT,
     payload: contactId,
-})
+});
 
 const updateFilter = value => ({
     type: actionTypes.FILTER_CONTACT,
     payload: value,
-})
+});
 
-export default { saveContact, deleteContact, updateFilter }
+export default { saveContact, deleteContact, updateFilter };

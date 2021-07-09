@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import actionTypes from './contacts-types'
 
-const parsedContacts = JSON.parse(localStorage.getItem('contacts'))
+const parsedContacts = JSON.parse(localStorage.getItem('contactArray')) 
 
-const itemsReducer = (state = parsedContacts ? parsedContacts : [], { type, payload }) => {
+const itemsReducer = (state = parsedContacts|| [], { type, payload }) => {
     switch (type) {
         case actionTypes.SAVE_CONTACT:
             if (state.some(({ name }) => name.toLowerCase() === payload.name.toLowerCase())) {
@@ -15,7 +15,9 @@ const itemsReducer = (state = parsedContacts ? parsedContacts : [], { type, payl
                 alert(`${payload.number} is already in contacts under a different name`)
                 return state
             }
-            return [payload, ...state];
+            const s = [payload, ...state]
+            console.log(s);
+            return s;
 
         case actionTypes.DELETE_CONTACT:
             return state.filter(({ id }) => id !== payload);

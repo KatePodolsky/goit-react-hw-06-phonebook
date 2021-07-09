@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import contactsActions from './redux/contacts/contacts-actions';
 
 import Container from "./components/Container/Container";
 import ContactForm from "./components/ContactForm/ContactForm";
